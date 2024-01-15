@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HouseCom.Data;
 using HouseCom.Models;
+using HouseCom.Repositories;
+using HouseCom.Models.DTO;
+using AutoMapper;
 
 namespace HouseCom.Controllers
 {
@@ -14,78 +17,59 @@ namespace HouseCom.Controllers
     [ApiController]
     public class HousesController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IHouseRepository _context;
+        private readonly IMapper _mapper;
 
-        public HousesController(ApplicationDbContext context)
+        public HousesController(IHouseRepository context,IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/Houses
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<House>>> GetHouses()
+        public async Task<ActionResult<IEnumerable<HouseDTO>>> GetHouses()
         {
-            return await _context.Houses.ToListAsync();
-        }
+            var houses = await _context.GetAllHouses();
+            var housesDTO = _mapper.Map<IEnumerable<House>,IEnumerable<HouseDTO>>(houses);
+            return Ok(housesDTO);
 
+        } 
         // GET: api/Houses/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<House>> GetHouse(int id)
+        public async Task<ActionResult<HouseDTO>> GetHouse(int id)
         {
-            var house = await _context.Houses.FindAsync(id);
+            var house = await _context.GetHouse(id);
 
             if (house == null)
             {
                 return NotFound();
             }
-
-            return house;
+            var houseDTO = _mapper.Map<HouseDTO>(house);
+            return Ok(houseDTO);
         }
 
         // PUT: api/Houses/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut]
-        public async Task<IActionResult> PutHouse( House house)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutHouse( int id, HouseDTO houseDTO)
         {
             
-            if ( house == null)
+            if (id == 0 || houseDTO == null)
             {
                 return BadRequest();
             }
+           
+            
 
-            //var entityToUpdate = await _context.Houses.FindAsync(id);
-            //if(entityToUpdate == null)
-            //{
-            //    return BadRequest();
-            //}
-            try
+            var house = _mapper.Map<House>(houseDTO);    
+            var resultString = await _context.UpdateHouse(id,house);
+            if (resultString == null)
             {
-
-                //entityToUpdate.UpdatedDate = DateTime.UtcNow;
-                //entityToUpdate.CreatedDate = DateTime.UtcNow;
-                //entityToUpdate.Occupancy = house.Occupancy;
-                //entityToUpdate.Price = house.Price;
-                //entityToUpdate.Details = house.Details;
-                //entityToUpdate.Name = house.Name;
-                //entityToUpdate.Sqft = house.Sqft;
-                //entityToUpdate.ImageUrl = house.ImageUrl;
-                //_context.Entry(entityToUpdate).State = EntityState.Modified;
-                // did not work
-                _context.Houses.Update(house);
-                await _context.SaveChangesAsync();
+                return NotFound();
+            }     
                 
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (house.Id == 0)
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+           
 
             return NoContent();
         }
@@ -93,10 +77,12 @@ namespace HouseCom.Controllers
         // POST: api/Houses
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<House>> PostHouse(House house)
+        public async Task<ActionResult<House>> PostHouse([FromBody] HouseCreateDTO createDTO)
         {
-            _context.Houses.Add(house);
-            await _context.SaveChangesAsync();
+            
+            House house =_mapper.Map<House>(createDTO);
+            await _context.CreateHouse(house);
+            
 
             return CreatedAtAction("GetHouse", new { id = house.Id }, house);
         }
@@ -105,21 +91,17 @@ namespace HouseCom.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteHouse(int id)
         {
-            var house = await _context.Houses.FindAsync(id);
+            var house = await _context.GetHouse(id);
             if (house == null)
             {
                 return NotFound();
             }
 
-            _context.Houses.Remove(house);
-            await _context.SaveChangesAsync();
+            await _context.DeleteHouse(house);          
 
             return NoContent();
         }
 
-        private bool HouseExists(int id)
-        {
-            return _context.Houses.Any(e => e.Id == id);
-        }
+       
     }
 }
