@@ -260,3 +260,6 @@ C:\Users\rober\source\repos\HouseCom\HouseCom\obj\Debug\net7.0\refint\HouseCom.d
 C:\Users\rober\source\repos\HouseCom\HouseCom\obj\Debug\net7.0\HouseCom.pdb
 C:\Users\rober\source\repos\HouseCom\HouseCom\obj\Debug\net7.0\HouseCom.genruntimeconfig.cache
 C:\Users\rober\source\repos\HouseCom\HouseCom\obj\Debug\net7.0\ref\HouseCom.dll
+C:\Users\rober\source\repos\HouseCom\HouseCom\bin\Debug\net7.0\HouseCom.staticwebassets.runtime.json
+C:\Users\rober\source\repos\HouseCom\HouseCom\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.UI.dll
+C:\Users\rober\source\repos\HouseCom\HouseCom\bin\Debug\net7.0\Microsoft.Extensions.FileProviders.Embedded.dll

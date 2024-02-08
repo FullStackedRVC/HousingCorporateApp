@@ -26,8 +26,10 @@ namespace HouseCom.Controllers
             _mapper = mapper;
         }
 
-        // GET: api/Houses
-        [HttpGet]
+        // GET: api/Houses        
+        [HttpGet]        
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<IEnumerable<HouseDTO>>> GetHouses()
         {
             var houses = await _context.GetAllHouses();
@@ -36,7 +38,11 @@ namespace HouseCom.Controllers
 
         } 
         // GET: api/Houses/5
+
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<HouseDTO>> GetHouse(int id)
         {
             var house = await _context.GetHouse(id);
@@ -52,6 +58,8 @@ namespace HouseCom.Controllers
         // PUT: api/Houses/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> PutHouse( int id, HouseDTO houseDTO)
         {
             
@@ -77,6 +85,9 @@ namespace HouseCom.Controllers
         // POST: api/Houses
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<House>> PostHouse([FromBody] HouseCreateDTO createDTO)
         {
             
@@ -89,6 +100,9 @@ namespace HouseCom.Controllers
 
         // DELETE: api/Houses/5
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> DeleteHouse(int id)
         {
             var house = await _context.GetHouse(id);
