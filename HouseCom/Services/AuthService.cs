@@ -1,15 +1,22 @@
 ﻿using Azure;
 using HouseCom.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace HouseCom.Services
 {
     public class AuthService : IAuthService
     {
         private readonly UserManager<IdentityUser> _userManager;
-        public AuthService(UserManager<IdentityUser> userManager)
+        private readonly IConfiguration _config;
+
+        public AuthService(UserManager<IdentityUser> userManager, IConfiguration config)
         {
             _userManager = userManager;
+            _config = config;
         }
         public async Task<bool> RegisterUser(LoginUser user)
         {
@@ -41,6 +48,32 @@ namespace HouseCom.Services
             return await _userManager.CheckPasswordAsync(identityUser, user.Password);
 
             
+        }
+
+        public string GenerateTokenString(LoginUser user)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Email,user.UserName),
+                new Claim(ClaimTypes.Role,"Admin"),
+
+            };
+
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+                _config.GetSection("Jwt:Key").Value));
+            SigningCredentials signingCred = new SigningCredentials( securityKey, algorithm: SecurityAlgorithms.HmacSha512Signature);
+            //claims = token content
+            var securityToken = new JwtSecurityToken(
+                claims:claims,
+                expires: DateTime.Now.AddMinutes(60),
+                issuer:_config.GetSection("Jwt:Issuer").Value,
+                audience:_config.GetSection("Jwt:Audience").Value,
+                //signingCredential is used to determine if token was modified in the client side
+                // by using a key
+                signingCredentials:signingCred
+                );
+            string tokenString = new JwtSecurityTokenHandler().WriteToken(securityToken);
+            return tokenString;
         }
     }
 }
