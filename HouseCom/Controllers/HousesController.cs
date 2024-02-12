@@ -10,11 +10,13 @@ using HouseCom.Models;
 using HouseCom.Repositories;
 using HouseCom.Models.DTO;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HouseCom.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class HousesController : ControllerBase
     {
         private readonly IHouseRepository _context;
@@ -27,7 +29,9 @@ namespace HouseCom.Controllers
         }
 
         // GET: api/Houses        
-        [HttpGet]        
+        [HttpGet]
+        // Cache results for 30 seconds
+        [ResponseCache(CacheProfileName = "Default30sec")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<IEnumerable<HouseDTO>>> GetHouses()
@@ -40,6 +44,7 @@ namespace HouseCom.Controllers
         // GET: api/Houses/5
 
         [HttpGet("{id}")]
+        [ResponseCache(CacheProfileName = "Default30sec")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -58,6 +63,10 @@ namespace HouseCom.Controllers
         // PUT: api/Houses/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        // If JWT Token does not have admin role the user will not be authorized to use this
+        [Authorize(Roles = "Admin")]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> PutHouse( int id, HouseDTO houseDTO)
@@ -85,6 +94,9 @@ namespace HouseCom.Controllers
         // POST: api/Houses
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize(Roles = "Admin")]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -100,6 +112,9 @@ namespace HouseCom.Controllers
 
         // DELETE: api/Houses/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

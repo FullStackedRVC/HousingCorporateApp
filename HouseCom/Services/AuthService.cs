@@ -61,7 +61,7 @@ namespace HouseCom.Services
 
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
                 _config.GetSection("Jwt:Key").Value));
-            SigningCredentials signingCred = new SigningCredentials( securityKey, algorithm: SecurityAlgorithms.HmacSha512Signature);
+            SigningCredentials signingCred = new SigningCredentials( securityKey, algorithm: SecurityAlgorithms.HmacSha256Signature);
             //claims = token content
             var securityToken = new JwtSecurityToken(
                 claims:claims,

@@ -8,6 +8,8 @@ using HouseCom.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,9 +47,18 @@ builder.Services.AddAuthentication(options =>
 };
 });
 
+builder.Services.AddResponseCaching();
+
 builder.Services.AddTransient<IAuthService, AuthService>();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(option =>
+{
+    option.CacheProfiles.Add("Default30sec",
+        new CacheProfile()
+        {
+            Duration = 30
+        });
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
