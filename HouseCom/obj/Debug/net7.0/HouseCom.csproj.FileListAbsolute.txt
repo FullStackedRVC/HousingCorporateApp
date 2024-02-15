@@ -264,3 +264,6 @@ C:\Users\rober\source\repos\HouseCom\HouseCom\bin\Debug\net7.0\HouseCom.staticwe
 C:\Users\rober\source\repos\HouseCom\HouseCom\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.UI.dll
 C:\Users\rober\source\repos\HouseCom\HouseCom\bin\Debug\net7.0\Microsoft.Extensions.FileProviders.Embedded.dll
 C:\Users\rober\source\repos\HouseCom\HouseCom\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\rober\source\repos\HouseCom\HouseCom\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\rober\source\repos\HouseCom\HouseCom\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\rober\source\repos\HouseCom\HouseCom\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll

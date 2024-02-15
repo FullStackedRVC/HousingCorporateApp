@@ -28,19 +28,21 @@ namespace HouseCom.Controllers
         }
         
         [HttpPost("Login")]
-        public async Task<IActionResult> Login(LoginUser user)
+        public async Task<IActionResult> Login([FromBody] LoginUser user)
         {
             
             if(!ModelState.IsValid)
             {
                 return BadRequest();
             }
-            if (await _authService.Login(user))
+           
+                var tokenString = await _authService.Login(user);
+            if (string.IsNullOrEmpty( tokenString))
             {
-                var tokenString =  _authService.GenerateTokenString(user);
-                return Ok(tokenString);
+                return BadRequest();
             }
-            return BadRequest();
+                return Ok(tokenString);           
+           
         }
     }
 }
