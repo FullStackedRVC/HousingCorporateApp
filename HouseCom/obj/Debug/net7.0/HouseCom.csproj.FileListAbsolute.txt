@@ -254,7 +254,6 @@ C:\Users\rober\source\repos\HouseCom\HouseCom\obj\Debug\net7.0\staticwebassets.p
 C:\Users\rober\source\repos\HouseCom\HouseCom\obj\Debug\net7.0\staticwebassets.build.json
 C:\Users\rober\source\repos\HouseCom\HouseCom\obj\Debug\net7.0\staticwebassets.development.json
 C:\Users\rober\source\repos\HouseCom\HouseCom\obj\Debug\net7.0\scopedcss\bundle\HouseCom.styles.css
-C:\Users\rober\source\repos\HouseCom\HouseCom\obj\Debug\net7.0\HouseCom.csproj.CopyComplete
 C:\Users\rober\source\repos\HouseCom\HouseCom\obj\Debug\net7.0\HouseCom.dll
 C:\Users\rober\source\repos\HouseCom\HouseCom\obj\Debug\net7.0\refint\HouseCom.dll
 C:\Users\rober\source\repos\HouseCom\HouseCom\obj\Debug\net7.0\HouseCom.pdb
@@ -267,3 +266,5 @@ C:\Users\rober\source\repos\HouseCom\HouseCom\bin\Debug\net7.0\Microsoft.AspNetC
 C:\Users\rober\source\repos\HouseCom\HouseCom\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\rober\source\repos\HouseCom\HouseCom\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\rober\source\repos\HouseCom\HouseCom\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
+C:\Users\rober\source\repos\HouseCom\HouseCom\obj\Debug\net7.0\HouseCom.sourcelink.json
+C:\Users\rober\source\repos\HouseCom\HouseCom\obj\Debug\net7.0\HouseCom.csproj.Up2Date

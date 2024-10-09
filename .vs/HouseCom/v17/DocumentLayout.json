@@ -1,0 +1,265 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\rober\\source\\repos\\HouseCom\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{26AA772F-6A7D-4C8C-ACEB-9EB96CA87393}|HouseCom\\HouseCom.csproj|c:\\users\\rober\\source\\repos\\housecom\\housecom\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26AA772F-6A7D-4C8C-ACEB-9EB96CA87393}|HouseCom\\HouseCom.csproj|solutionrelative:housecom\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AAE546A-A720-4A02-B2F2-118AA4159E84}|HouseTester\\HouseTester.csproj|c:\\users\\rober\\source\\repos\\housecom\\housetester\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AAE546A-A720-4A02-B2F2-118AA4159E84}|HouseTester\\HouseTester.csproj|solutionrelative:housetester\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26AA772F-6A7D-4C8C-ACEB-9EB96CA87393}|HouseCom\\HouseCom.csproj|c:\\users\\rober\\source\\repos\\housecom\\housecom\\housecom.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{26AA772F-6A7D-4C8C-ACEB-9EB96CA87393}|HouseCom\\HouseCom.csproj|solutionrelative:housecom\\housecom.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AAE546A-A720-4A02-B2F2-118AA4159E84}|HouseTester\\HouseTester.csproj|c:\\users\\rober\\source\\repos\\housecom\\housetester\\housetester.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{3AAE546A-A720-4A02-B2F2-118AA4159E84}|HouseTester\\HouseTester.csproj|solutionrelative:housetester\\housetester.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26AA772F-6A7D-4C8C-ACEB-9EB96CA87393}|HouseCom\\HouseCom.csproj|c:\\users\\rober\\source\\repos\\housecom\\housecom\\housecom.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{26AA772F-6A7D-4C8C-ACEB-9EB96CA87393}|HouseCom\\HouseCom.csproj|solutionrelative:housecom\\housecom.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26AA772F-6A7D-4C8C-ACEB-9EB96CA87393}|HouseCom\\HouseCom.csproj|c:\\users\\rober\\source\\repos\\housecom\\housecom\\migrations\\20240208031231_identity2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26AA772F-6A7D-4C8C-ACEB-9EB96CA87393}|HouseCom\\HouseCom.csproj|solutionrelative:housecom\\migrations\\20240208031231_identity2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26AA772F-6A7D-4C8C-ACEB-9EB96CA87393}|HouseCom\\HouseCom.csproj|c:\\users\\rober\\source\\repos\\housecom\\housecom\\mappingconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26AA772F-6A7D-4C8C-ACEB-9EB96CA87393}|HouseCom\\HouseCom.csproj|solutionrelative:housecom\\mappingconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26AA772F-6A7D-4C8C-ACEB-9EB96CA87393}|HouseCom\\HouseCom.csproj|c:\\users\\rober\\source\\repos\\housecom\\housecom\\models\\pagination.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26AA772F-6A7D-4C8C-ACEB-9EB96CA87393}|HouseCom\\HouseCom.csproj|solutionrelative:housecom\\models\\pagination.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26AA772F-6A7D-4C8C-ACEB-9EB96CA87393}|HouseCom\\HouseCom.csproj|c:\\users\\rober\\source\\repos\\housecom\\housecom\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{26AA772F-6A7D-4C8C-ACEB-9EB96CA87393}|HouseCom\\HouseCom.csproj|solutionrelative:housecom\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26AA772F-6A7D-4C8C-ACEB-9EB96CA87393}|HouseCom\\HouseCom.csproj|c:\\users\\rober\\source\\repos\\housecom\\housecom\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26AA772F-6A7D-4C8C-ACEB-9EB96CA87393}|HouseCom\\HouseCom.csproj|solutionrelative:housecom\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26AA772F-6A7D-4C8C-ACEB-9EB96CA87393}|HouseCom\\HouseCom.csproj|c:\\users\\rober\\source\\repos\\housecom\\housecom\\models\\loginuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26AA772F-6A7D-4C8C-ACEB-9EB96CA87393}|HouseCom\\HouseCom.csproj|solutionrelative:housecom\\models\\loginuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26AA772F-6A7D-4C8C-ACEB-9EB96CA87393}|HouseCom\\HouseCom.csproj|c:\\users\\rober\\source\\repos\\housecom\\housecom\\models\\dto\\housecreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26AA772F-6A7D-4C8C-ACEB-9EB96CA87393}|HouseCom\\HouseCom.csproj|solutionrelative:housecom\\models\\dto\\housecreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26AA772F-6A7D-4C8C-ACEB-9EB96CA87393}|HouseCom\\HouseCom.csproj|c:\\users\\rober\\source\\repos\\housecom\\housecom\\models\\house.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26AA772F-6A7D-4C8C-ACEB-9EB96CA87393}|HouseCom\\HouseCom.csproj|solutionrelative:housecom\\models\\house.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26AA772F-6A7D-4C8C-ACEB-9EB96CA87393}|HouseCom\\HouseCom.csproj|c:\\users\\rober\\source\\repos\\housecom\\housecom\\migrations\\20240102010046_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26AA772F-6A7D-4C8C-ACEB-9EB96CA87393}|HouseCom\\HouseCom.csproj|solutionrelative:housecom\\migrations\\20240102010046_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "HouseCom",
+              "DocumentMoniker": "C:\\Users\\rober\\source\\repos\\HouseCom\\HouseCom\\HouseCom.csproj",
+              "RelativeDocumentMoniker": "HouseCom\\HouseCom.csproj",
+              "ToolTip": "C:\\Users\\rober\\source\\repos\\HouseCom\\HouseCom\\HouseCom.csproj",
+              "RelativeToolTip": "HouseCom\\HouseCom.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-10-08T23:44:52.489Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HouseTester.csproj",
+              "DocumentMoniker": "C:\\Users\\rober\\source\\repos\\HouseCom\\HouseTester\\HouseTester.csproj",
+              "RelativeDocumentMoniker": "HouseTester\\HouseTester.csproj",
+              "ToolTip": "C:\\Users\\rober\\source\\repos\\HouseCom\\HouseTester\\HouseTester.csproj",
+              "RelativeToolTip": "HouseTester\\HouseTester.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-08-13T00:02:17.594Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UnitTest1.cs",
+              "DocumentMoniker": "C:\\Users\\rober\\source\\repos\\HouseCom\\HouseTester\\UnitTest1.cs",
+              "RelativeDocumentMoniker": "HouseTester\\UnitTest1.cs",
+              "ToolTip": "C:\\Users\\rober\\source\\repos\\HouseCom\\HouseTester\\UnitTest1.cs",
+              "RelativeToolTip": "HouseTester\\UnitTest1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-12T23:39:25.725Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\rober\\source\\repos\\HouseCom\\HouseCom\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "HouseCom\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\rober\\source\\repos\\HouseCom\\HouseCom\\Properties\\launchSettings.json",
+              "RelativeToolTip": "HouseCom\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-02-08T19:34:30.088Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\rober\\source\\repos\\HouseCom\\HouseCom\\Program.cs",
+              "RelativeDocumentMoniker": "HouseCom\\Program.cs",
+              "ToolTip": "C:\\Users\\rober\\source\\repos\\HouseCom\\HouseCom\\Program.cs",
+              "RelativeToolTip": "HouseCom\\Program.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABoAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-12-02T23:09:52.675Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\rober\\source\\repos\\HouseCom\\HouseCom\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "HouseCom\\Services\\AuthService.cs",
+              "ToolTip": "C:\\Users\\rober\\source\\repos\\HouseCom\\HouseCom\\Services\\AuthService.cs",
+              "RelativeToolTip": "HouseCom\\Services\\AuthService.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAhwEMAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-08T02:22:28.526Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "LoginUser.cs",
+              "DocumentMoniker": "C:\\Users\\rober\\source\\repos\\HouseCom\\HouseCom\\Models\\LoginUser.cs",
+              "RelativeDocumentMoniker": "HouseCom\\Models\\LoginUser.cs",
+              "ToolTip": "C:\\Users\\rober\\source\\repos\\HouseCom\\HouseCom\\Models\\LoginUser.cs",
+              "RelativeToolTip": "HouseCom\\Models\\LoginUser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAUAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-08T00:21:13.257Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Pagination.cs",
+              "DocumentMoniker": "C:\\Users\\rober\\source\\repos\\HouseCom\\HouseCom\\Models\\Pagination.cs",
+              "RelativeDocumentMoniker": "HouseCom\\Models\\Pagination.cs",
+              "ToolTip": "C:\\Users\\rober\\source\\repos\\HouseCom\\HouseCom\\Models\\Pagination.cs",
+              "RelativeToolTip": "HouseCom\\Models\\Pagination.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-12T23:45:46.817Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HouseCom.csproj",
+              "DocumentMoniker": "C:\\Users\\rober\\source\\repos\\HouseCom\\HouseCom\\HouseCom.csproj",
+              "RelativeDocumentMoniker": "HouseCom\\HouseCom.csproj",
+              "ToolTip": "C:\\Users\\rober\\source\\repos\\HouseCom\\HouseCom\\HouseCom.csproj",
+              "RelativeToolTip": "HouseCom\\HouseCom.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2023-12-02T23:41:07.459Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MappingConfig.cs",
+              "DocumentMoniker": "C:\\Users\\rober\\source\\repos\\HouseCom\\HouseCom\\MappingConfig.cs",
+              "RelativeDocumentMoniker": "HouseCom\\MappingConfig.cs",
+              "ToolTip": "C:\\Users\\rober\\source\\repos\\HouseCom\\HouseCom\\MappingConfig.cs",
+              "RelativeToolTip": "HouseCom\\MappingConfig.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-01-14T08:47:08.67Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "20240208031231_identity2.cs",
+              "DocumentMoniker": "C:\\Users\\rober\\source\\repos\\HouseCom\\HouseCom\\Migrations\\20240208031231_identity2.cs",
+              "RelativeDocumentMoniker": "HouseCom\\Migrations\\20240208031231_identity2.cs",
+              "ToolTip": "C:\\Users\\rober\\source\\repos\\HouseCom\\HouseCom\\Migrations\\20240208031231_identity2.cs",
+              "RelativeToolTip": "HouseCom\\Migrations\\20240208031231_identity2.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-08T17:36:07.023Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "HouseCreateDTO.cs",
+              "DocumentMoniker": "C:\\Users\\rober\\source\\repos\\HouseCom\\HouseCom\\Models\\DTO\\HouseCreateDTO.cs",
+              "RelativeDocumentMoniker": "HouseCom\\Models\\DTO\\HouseCreateDTO.cs",
+              "ToolTip": "C:\\Users\\rober\\source\\repos\\HouseCom\\HouseCom\\Models\\DTO\\HouseCreateDTO.cs",
+              "RelativeToolTip": "HouseCom\\Models\\DTO\\HouseCreateDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-01-15T03:50:28.477Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "House.cs",
+              "DocumentMoniker": "C:\\Users\\rober\\source\\repos\\HouseCom\\HouseCom\\Models\\House.cs",
+              "RelativeDocumentMoniker": "HouseCom\\Models\\House.cs",
+              "ToolTip": "C:\\Users\\rober\\source\\repos\\HouseCom\\HouseCom\\Models\\House.cs",
+              "RelativeToolTip": "HouseCom\\Models\\House.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAMBlwA4AAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-01-02T00:28:13.194Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "20240102010046_InitialCreate.cs",
+              "DocumentMoniker": "C:\\Users\\rober\\source\\repos\\HouseCom\\HouseCom\\Migrations\\20240102010046_InitialCreate.cs",
+              "RelativeDocumentMoniker": "HouseCom\\Migrations\\20240102010046_InitialCreate.cs",
+              "ToolTip": "C:\\Users\\rober\\source\\repos\\HouseCom\\HouseCom\\Migrations\\20240102010046_InitialCreate.cs",
+              "RelativeToolTip": "HouseCom\\Migrations\\20240102010046_InitialCreate.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-01-03T23:32:12.459Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
