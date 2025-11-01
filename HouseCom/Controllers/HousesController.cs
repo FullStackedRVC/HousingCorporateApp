@@ -19,20 +19,24 @@ using Microsoft.AspNetCore.JsonPatch;
 
 namespace HouseCom.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     
+    [ApiController]
+    [ApiVersion("1")]
+    [Route("api/houses")]
+
     public class HousesController : ControllerBase
     {
         private readonly IHouseRepository _context;
         private readonly IMapper _mapper;
+        private readonly ILogger<HousesController> _logger;
         protected APIResponse _response;
 
-        public HousesController(IHouseRepository context,IMapper mapper)
+        public HousesController(IHouseRepository context,IMapper mapper, ILogger<HousesController> logger)
         {
             _context = context;
             _mapper = mapper;
             _response = new();
+            _logger = logger;
         }
 
         // GET: api/Houses        
@@ -48,40 +52,37 @@ namespace HouseCom.Controllers
             //var housesDTO = _mapper.Map<IEnumerable<House>,IEnumerable<HouseDTO>>(houses);
             //return Ok(housesDTO);
 
-            try
+            _logger.LogDebug("Getting all houses Debug");
+            _logger.LogInformation("Getting all houses");
+            _logger.LogWarning("Getting all houses Warning");
+            //_logger.LogError(new Exception("Getting all houses Error"), "Usually accompanied by exception");
+
+            IEnumerable<House> houseList;
+
+            if (occupancy > 0)
             {
-
-                IEnumerable<House> houseList;
-
-                if (occupancy > 0)
-                {
-                    houseList = await _context.GetAllHouses(u => u.Occupancy == occupancy, pageSize: pageSize,
-                        pageNumber: pageNumber);
-                }
-                else
-                {
-                    houseList = await _context.GetAllHouses(pageSize: pageSize,
-                        pageNumber: pageNumber);
-                }
-                if (!string.IsNullOrEmpty(search))
-                {
-                    houseList = houseList.Where(u => u.Name.ToLower().Contains(search));
-                }
-                Pagination pagination = new() { PageNumber = pageNumber, PageSize = pageSize };
-
-                Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pagination));
-                _response.Result = _mapper.Map<List<HouseDTO>>(houseList);
-                _response.StatusCode = HttpStatusCode.OK;
-                return Ok(_response);
+                houseList = await _context.GetAllHouses(u => u.Occupancy == occupancy, pageSize: pageSize,
+                    pageNumber: pageNumber);
 
             }
-            catch (Exception ex)
+            else
             {
-                _response.IsSuccess = false;
-                _response.ErrorMessages
-                     = new List<string>() { ex.ToString() };
+                houseList = await _context.GetAllHouses(pageSize: pageSize,
+                    pageNumber: pageNumber);
             }
-            return _response;
+            if (!string.IsNullOrEmpty(search))
+            {
+                houseList = houseList.Where(u => u.Name.ToLower().Contains(search));
+            }
+            Pagination pagination = new() { PageNumber = pageNumber, PageSize = pageSize };
+
+            Response.Headers.Append("X-Pagination", JsonSerializer.Serialize(pagination));
+            _response.Result = _mapper.Map<List<HouseDTO>>(houseList);
+            _response.StatusCode = HttpStatusCode.OK;
+            
+            return Ok(_response);
+
+            
 
 
         }
@@ -141,32 +142,24 @@ namespace HouseCom.Controllers
         public async Task<ActionResult<APIResponse>> PutHouse( int id, HouseDTO houseDTO)
         {
             
-            try
-            {                
-                if (id == 0 || houseDTO == null)
-                {
-                    return BadRequest();
-                }
-                
-                var house = await _context.GetHouse(u => u.Id == id, tracked: false);
-
-
-                if (house == null)
-                {
-                    return BadRequest();
-                }
-                var houseUpdated = _mapper.Map<House>(houseDTO);
-                await _context.UpdateHouse(houseUpdated);
-                
-
-            }
-            catch(Exception ex)
+                           
+            if (id == 0 || houseDTO == null)
             {
-                _response.IsSuccess = false;
-                _response.ErrorMessages
-                     = new List<string>() { ex.ToString() };
+                return BadRequest();
             }
-            return _response;
+                
+            var house = await _context.GetHouse(u => u.Id == id, tracked: false);
+
+
+            if (house == null)
+            {
+                return BadRequest();
+            }
+            var houseUpdated = _mapper.Map<House>(houseDTO);
+            await _context.UpdateHouse(houseUpdated);
+
+
+            return NoContent();
         }
 
 
@@ -215,34 +208,27 @@ namespace HouseCom.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<APIResponse>> PostHouse([FromBody] HouseCreateDTO createDTO)
         {
-            try
+            
+
+            if(await _context.GetHouse(u => u.Name.ToLower() == createDTO.Name.ToLower()) != null)
             {
-
-                if(await _context.GetHouse(u => u.Name.ToLower() == createDTO.Name.ToLower()) != null)
-                {
-                    ModelState.AddModelError("ErrorMessages", "Villa already Exists!");
-                    return BadRequest(ModelState);
-                }
-
-                if (createDTO == null)
-                {
-                    return BadRequest(createDTO);
-                }
-
-                House house = _mapper.Map<House>(createDTO);
-                await _context.CreateHouse(house);
-                _response.Result = house;
-                _response.StatusCode = HttpStatusCode.Created;
-                //return CreatedAtRoute("GetHouse", new { id = house.Id }, _response);
-
+                ModelState.AddModelError("ErrorMessages", "Villa already Exists!");
+                return BadRequest(ModelState);
             }
-            catch (Exception ex)
+
+            if (createDTO == null)
             {
-                _response.IsSuccess = false;
-                _response.ErrorMessages 
-                    = new List<string>() { ex.ToString() };
-
+                return BadRequest(createDTO);
             }
+
+            House house = _mapper.Map<House>(createDTO);
+            await _context.CreateHouse(house);
+            _response.Result = house;
+            _response.StatusCode = HttpStatusCode.Created;
+            //return CreatedAtRoute("GetHouse", new { id = house.Id }, _response);
+
+            
+           
             
             
            
@@ -260,32 +246,24 @@ namespace HouseCom.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<APIResponse>> DeleteHouse(int id)
         {
-            try
+            
+            if (id == 0)
             {
-                if (id == 0)
-                {
-                    return BadRequest();
-                }
-                var house = await _context.GetHouse(u => u.Id == id);
-                if (house == null)
-                {
-                    return NotFound();
-                }
-
-                await _context.DeleteHouse(house);
-                _response.StatusCode = HttpStatusCode.NoContent;
-                _response.IsSuccess = true;
-                return Ok(_response);
+                return BadRequest();
             }
-            catch (Exception ex)
+            var house = await _context.GetHouse(u => u.Id == id);
+            if (house == null)
             {
-                _response.IsSuccess = false;
-                _response.ErrorMessages
-                     = new List<string>() { ex.ToString() };
+                return NotFound();
             }
 
+            await _context.DeleteHouse(house);
+            _response.StatusCode = HttpStatusCode.NoContent;
+            _response.IsSuccess = true;
+            return NoContent();
 
-            return _response;
+
+
         }
 
        

@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HouseCom")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d6c95cc7dfbc6153d7609a4b3977c82967b93f74")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+78ad4c762f75d40861e519da0eae8898703db29f")]
 [assembly: System.Reflection.AssemblyProductAttribute("HouseCom")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HouseCom")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

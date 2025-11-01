@@ -12,8 +12,46 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using HouseCom.Error;
+using OpenTelemetry.Logs;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
+using OpenTelemetry.Metrics;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Logging.ClearProviders().AddConsole().AddDebug().AddOpenTelemetry(opt =>
+{ 
+    opt.AddConsoleExporter()
+    .SetResourceBuilder(ResourceBuilder.CreateDefault()
+    .AddService("HouseCom Logger"))
+    .AddProcessor(new ActivityEventLogProcessor())
+    .IncludeScopes = true    
+    ;
+
+}
+    
+    );
+
+builder.Services.AddOpenTelemetry()
+    .WithTracing(tracerProviderBuilder =>
+    {
+        tracerProviderBuilder.AddSource("HouseCom Tracer")
+            .AddAspNetCoreInstrumentation()            
+            .AddHttpClientInstrumentation()
+            
+
+            .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("HouseCom Tracer")).AddConsoleExporter();
+    })
+    
+   .WithMetrics(meterProviderBuilder =>
+   {
+       meterProviderBuilder
+           .AddAspNetCoreInstrumentation()
+           .AddHttpClientInstrumentation()
+           .AddRuntimeInstrumentation()
+           .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("HouseCom Meter")).AddPrometheusExporter();
+   }) ;
+
 
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(option => {
@@ -98,6 +136,10 @@ builder.Services.AddSwaggerGen(options => {
 });
 builder.Services.AddScoped <IHouseRepository, HouseRepository>();
 builder.Services.AddAutoMapper(typeof(MappingConfig));
+
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -106,6 +148,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseOpenTelemetryPrometheusScrapingEndpoint();
+app.UseExceptionHandler();
 
 app.UseHttpsRedirection();
 

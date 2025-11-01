@@ -6,8 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HouseCom.Controllers
 {
-    [Route("api/[controller]")]
+    
     [ApiController]
+    [ApiVersion("1")]
+    [Route("api/authorizations")]
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
@@ -16,7 +18,7 @@ namespace HouseCom.Controllers
         {
             _authService = authService;
         }
-        [HttpPost("Register")]
+        [HttpPost("register")]
         public async Task<IActionResult> RegisterUser(LoginUser user)
         {
             if(await _authService.RegisterUser(user))
@@ -27,7 +29,7 @@ namespace HouseCom.Controllers
 
         }
         
-        [HttpPost("Login")]
+        [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginUser user)
         {
             
