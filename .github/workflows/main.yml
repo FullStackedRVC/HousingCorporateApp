@@ -13,7 +13,7 @@ jobs:
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                dotnet: [8.0, 7.0]
+                dotnet: ['8.0', '7.0']
         steps:
             - name: Checkout
               uses: actions/checkout@v4
@@ -22,7 +22,7 @@ jobs:
               uses: actions/setup-dotnet@v3
               with:
                 dotnet-version: ${{ matrix.dotnet }}
-                cache: 'nuget'
+                cache: true
 
             - name: Restore
               run: dotnet restore
