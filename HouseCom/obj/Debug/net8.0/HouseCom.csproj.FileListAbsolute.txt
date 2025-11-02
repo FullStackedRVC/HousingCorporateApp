@@ -289,7 +289,6 @@ C:\Users\rober\source\repos\HouseCom\HouseCom\bin\Debug\net8.0\OpenTelemetry.Exp
 C:\Users\rober\source\repos\HouseCom\HouseCom\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
 C:\Users\rober\source\repos\HouseCom\HouseCom\obj\Debug\net8.0\staticwebassets.build.endpoints.json
 C:\Users\rober\source\repos\HouseCom\HouseCom\obj\Debug\net8.0\staticwebassets\msbuild.HouseCom.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-C:\Users\rober\source\repos\HouseCom\HouseCom\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\rober\source\repos\HouseCom\HouseCom\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Abstractions.dll
 C:\Users\rober\source\repos\HouseCom\HouseCom\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
 C:\Users\rober\source\repos\HouseCom\HouseCom\bin\Debug\net8.0\OpenTelemetry.Extensions.Hosting.dll

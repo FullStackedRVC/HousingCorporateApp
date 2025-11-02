@@ -33,6 +33,8 @@ namespace HouseTester.Controller
             _response = new();
         }
 
+        private HousesController CreateController() => new HousesController(_context, _mapper, _logger);
+
         [Theory]
         [InlineData(1)]
         public async Task HousesController_GetHouse_ReturnsHouse_WhenExists(int id)
@@ -40,9 +42,11 @@ namespace HouseTester.Controller
             // Arrange  
             var house = new House { Id = id, Name = "Test House" };
             var houseDTO = new HouseDTO { Id = id, Name = "Test House" };
-            A.CallTo(() => _context.GetHouse(A<Expression<Func<House, bool>>>._, true, null)).Returns(house);
-            A.CallTo(() => _mapper.Map<HouseDTO>(house)).Returns(houseDTO);
-            var controller = new HousesController(_context, _mapper, _logger);
+            A.CallTo(() => _context.GetHouse(A<Expression<Func<House, bool>>>._, A<bool>._, A<string?>._))
+                .Returns(Task.FromResult<House?>(house));
+            // Use argument matcher so test doesn't depend on reference equality of the instance
+            A.CallTo(() => _mapper.Map<HouseDTO>(A<House>._)).Returns(houseDTO);
+            var controller = CreateController();
 
             // Act  
             var result = await controller.GetHouse(id);
@@ -51,8 +55,12 @@ namespace HouseTester.Controller
             result.Should().NotBeNull();
             result.Value.Should().BeOfType<APIResponse>();
             var apiResponse = result.Value as APIResponse;
-            apiResponse.Result.Should().Be(houseDTO);
+            apiResponse.Should().NotBeNull();
+            // Compare by value not reference
+            apiResponse!.Result.Should().BeEquivalentTo(houseDTO);
             apiResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+            // verify mapper was used
+            A.CallTo(() => _mapper.Map<HouseDTO>(A<House>._)).MustHaveHappenedOnceExactly();
         }
 
         [Theory]
@@ -60,8 +68,9 @@ namespace HouseTester.Controller
         public async Task HousesController_GetHouse_ReturnsNotFound_WhenHouseDoesNotExist(int id)
         {
             // Arrange
-            A.CallTo(() => _context.GetHouse(A<Expression<Func<House, bool>>>._, true, null)).Returns(Task.FromResult<House?>(null));
-            var controller = new HousesController(_context, _mapper, _logger);
+            A.CallTo(() => _context.GetHouse(A<Expression<Func<House, bool>>>._, A<bool>._, A<string?>._))
+                .Returns(Task.FromResult<House?>(null));
+            var controller = CreateController();
 
             // Act
             var result = await controller.GetHouse(id);
@@ -69,7 +78,8 @@ namespace HouseTester.Controller
             // Assert
             result.Result.Should().BeOfType<NotFoundObjectResult>();
             var notFoundResult = result.Result as NotFoundObjectResult;
-            notFoundResult.StatusCode.Should().Be((int)HttpStatusCode.NotFound);
+            notFoundResult.Should().NotBeNull();
+            notFoundResult!.StatusCode.Should().Be((int)HttpStatusCode.NotFound);
         }
 
         [Fact]
@@ -78,21 +88,22 @@ namespace HouseTester.Controller
             // Arrange
             var houses = new List<House> { new House { Id = 1, Name = "A" }, new House { Id = 2, Name = "B" } };
             var houseDTOs = new List<HouseDTO> { new HouseDTO { Id = 1, Name = "A" }, new HouseDTO { Id = 2, Name = "B" } };
-            A.CallTo(() => _context.GetAllHouses(null, null, 0, 1)).Returns(houses);
-            A.CallTo(() => _mapper.Map<List<HouseDTO>>(houses)).Returns(houseDTOs);
-            var controller = new HousesController(_context, _mapper, _logger);
+            A.CallTo(() => _context.GetAllHouses(A<Expression<Func<House, bool>>>._, A<string?>._, A<int>._, A<int>._))
+                .Returns(Task.FromResult<IEnumerable<House>>(houses));
+            A.CallTo(() => _mapper.Map<List<HouseDTO>>(A<IEnumerable<House>>._)).Returns(houseDTOs);
+            var controller = CreateController();
 
             // Act
             var result = await controller.GetHouses(null, null);
-            
 
-            // No additional changes are needed if the HouseUpdateDTO class exists in the HouseCom.Models.DTO namespace.
             // Assert
             result.Should().NotBeNull();
             result.Value.Should().BeOfType<APIResponse>();
             var apiResponse = result.Value as APIResponse;
-            apiResponse.Result.Should().Be(houseDTOs);
+            apiResponse.Should().NotBeNull();
+            apiResponse!.Result.Should().BeEquivalentTo(houseDTOs);
             apiResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+            A.CallTo(() => _mapper.Map<List<HouseDTO>>(A<IEnumerable<House>>._)).MustHaveHappenedOnceExactly();
         }
 
         [Fact]
@@ -101,9 +112,9 @@ namespace HouseTester.Controller
             // Arrange
             var houseDTO = new HouseCreateDTO { Name = "New House" };
             var house = new House { Id = 1, Name = "New House" };
-            A.CallTo(() => _mapper.Map<House>(houseDTO)).Returns(house);
-            A.CallTo(() => _context.CreateHouse(house)).Returns(Task.CompletedTask);
-            var controller = new HousesController(_context, _mapper, _logger);
+            A.CallTo(() => _mapper.Map<House>(A<HouseCreateDTO>._)).Returns(house);
+            A.CallTo(() => _context.CreateHouse(A<House>._)).Returns(Task.CompletedTask);
+            var controller = CreateController();
 
             // Act
             var result = await controller.PostHouse(houseDTO);
@@ -112,22 +123,28 @@ namespace HouseTester.Controller
             result.Should().NotBeNull();
             result.Result.Should().BeOfType<ObjectResult>();
             var objectResult = result.Result as ObjectResult;
-            objectResult.StatusCode.Should().Be((int)HttpStatusCode.Created);
+            objectResult.Should().NotBeNull();
+            objectResult!.StatusCode.Should().Be((int)HttpStatusCode.Created);
+            // verify repository was called to create
+            A.CallTo(() => _context.CreateHouse(A<House>._)).MustHaveHappenedOnceExactly();
         }
 
         [Fact]
         public async Task HousesController_PostHouse_ReturnsBadRequest_WhenInputIsNull()
         {
             // Arrange
-            var controller = new HousesController(_context, _mapper, _logger);
+            var controller = CreateController();
 
             // Act
-            var result = await controller.PostHouse(null);
+            var result = await controller.PostHouse(null!);
 
             // Assert
             result.Result.Should().BeOfType<BadRequestObjectResult>();
             var badRequest = result.Result as BadRequestObjectResult;
-            badRequest.StatusCode.Should().Be((int)HttpStatusCode.BadRequest);
+            badRequest.Should().NotBeNull();
+            badRequest!.StatusCode.Should().Be((int)HttpStatusCode.BadRequest);
+            // should not try to create anything when input is null
+            A.CallTo(() => _context.CreateHouse(A<House>._)).MustNotHaveHappened();
         }
 
         [Fact]
@@ -137,16 +154,18 @@ namespace HouseTester.Controller
             var id = 1;
             var houseDTO = new HouseDTO { Name = "Updated House" };
             var house = new House { Id = id, Name = "Updated House" };
-            A.CallTo(() => _context.GetHouse(A<Expression<Func<House, bool>>>._, true, null)).Returns(house);
-            A.CallTo(() => _mapper.Map<House>(houseDTO)).Returns(house);
-            A.CallTo(() => _context.UpdateHouse(house)).Returns(Task.CompletedTask);
-            var controller = new HousesController(_context, _mapper, _logger);
+            A.CallTo(() => _context.GetHouse(A<Expression<Func<House, bool>>>._, A<bool>._, A<string?>._))
+                .Returns(Task.FromResult<House?>(house));
+            A.CallTo(() => _mapper.Map<House>(A<HouseDTO>._)).Returns(house);
+            A.CallTo(() => _context.UpdateHouse(A<House>._)).Returns(Task.CompletedTask);
+            var controller = CreateController();
 
             // Act
             var result = await controller.PutHouse(id, houseDTO);
 
             // Assert
             result.Should().BeOfType<NoContentResult>();
+            A.CallTo(() => _context.UpdateHouse(A<House>._)).MustHaveHappenedOnceExactly();
         }
 
         [Fact]
@@ -155,14 +174,16 @@ namespace HouseTester.Controller
             // Arrange
             var id = 99;
             var houseDTO = new HouseDTO { Name = "Updated House" };
-            A.CallTo(() => _context.GetHouse(A<Expression<Func<House, bool>>>._, true, null)).Returns(Task.FromResult<House?>(null));
-            var controller = new HousesController(_context, _mapper, _logger);
+            A.CallTo(() => _context.GetHouse(A<Expression<Func<House, bool>>>._, A<bool>._, A<string?>._))
+                .Returns(Task.FromResult<House?>(null));
+            var controller = CreateController();
 
             // Act
             var result = await controller.PutHouse(id, houseDTO);
 
             // Assert
             result.Should().BeOfType<NotFoundResult>();
+            A.CallTo(() => _context.UpdateHouse(A<House>._)).MustNotHaveHappened();
         }
 
         [Fact]
@@ -171,15 +192,17 @@ namespace HouseTester.Controller
             // Arrange
             var id = 1;
             var house = new House { Id = id, Name = "To Delete" };
-            A.CallTo(() => _context.GetHouse(A<Expression<Func<House, bool>>>._, true, null)).Returns(house);
-            A.CallTo(() => _context.DeleteHouse(house)).Returns(Task.CompletedTask);
-            var controller = new HousesController(_context, _mapper, _logger);
+            A.CallTo(() => _context.GetHouse(A<Expression<Func<House, bool>>>._, A<bool>._, A<string?>._))
+                .Returns(Task.FromResult<House?>(house));
+            A.CallTo(() => _context.DeleteHouse(A<House>._)).Returns(Task.CompletedTask);
+            var controller = CreateController();
 
             // Act
             var result = await controller.DeleteHouse(id);
 
             // Assert
             result.Should().BeOfType<NoContentResult>();
+            A.CallTo(() => _context.DeleteHouse(A<House>._)).MustHaveHappenedOnceExactly();
         }
 
         [Fact]
@@ -187,14 +210,16 @@ namespace HouseTester.Controller
         {
             // Arrange
             var id = 99;
-            A.CallTo(() => _context.GetHouse(A<Expression<Func<House, bool>>>._, true, null)).Returns(Task.FromResult<House?>(null));
-            var controller = new HousesController(_context, _mapper, _logger);
+            A.CallTo(() => _context.GetHouse(A<Expression<Func<House, bool>>>._, A<bool>._, A<string?>._))
+                .Returns(Task.FromResult<House?>(null));
+            var controller = CreateController();
 
             // Act
             var result = await controller.DeleteHouse(id);
 
             // Assert
             result.Should().BeOfType<NotFoundResult>();
+            A.CallTo(() => _context.DeleteHouse(A<House>._)).MustNotHaveHappened();
         }
     }
 }
